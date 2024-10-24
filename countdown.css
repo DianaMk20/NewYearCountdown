@@ -41,7 +41,7 @@ h1 {
 }
 
 .countdown-el {
-  background: rgba(9, 8, 5, 0.193); /* Background for each box */
+  background: rgba(243, 242, 239, 0.905); /* Background for each box */
   padding: 1.5rem;
   border-radius: 15px; /* Rounded corners for each box */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for each box */
@@ -63,7 +63,7 @@ h1 {
 .countdown-el span {
   font-family: "Bungee", cursive;
   font-weight: normal;
-  color: #f8f1ec;
+  color: #2a1404;
   font-size: 1rem;
 }
 
