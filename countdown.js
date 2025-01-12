@@ -1,29 +1,34 @@
-const newYear = "2026-01-01";
+// Set the target date to January 1, 2026
+const targetDate = new Date("January 1, 2026 00:00:00").getTime();
 
-function countdown() {
-  const newYearDate = new Date(newYear);
-  const today = new Date();
+function updateCountdown() {
+  const now = new Date().getTime();
+  const timeDifference = targetDate - now;
 
-  const diffMs = newYearDate - today;
-  const diffDays = Math.floor(diffMs / 86400000); // days
-  const diffHrs = Math.floor((diffMs % 86400000) / 3600000); // hours
-  const diffMins = Math.floor((diffMs % 3600000) / 60000); // minutes
-  const diffSecs = Math.floor((diffMs % 60000) / 1000); // seconds
+  // Stop the countdown if the target date is reached
+  if (timeDifference <= 0) {
+    clearInterval(countdownInterval);
+    document.getElementById("day").innerText = "0";
+    document.getElementById("hour").innerText = "0";
+    document.getElementById("minute").innerText = "0";
+    document.getElementById("second").innerText = "0";
+    return;
+  }
 
-  document.getElementById("day").textContent = diffDays;
-  document.getElementById("hour").textContent = String(diffHrs).padStart(
-    2,
-    "0"
+  // Calculate days, hours, minutes, and seconds
+  const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
   );
-  document.getElementById("minute").textContent = String(diffMins).padStart(
-    2,
-    "0"
-  );
-  document.getElementById("second").textContent = String(diffSecs).padStart(
-    2,
-    "0"
-  );
+  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  // Update the countdown display
+  document.getElementById("day").innerText = days;
+  document.getElementById("hour").innerText = hours;
+  document.getElementById("minute").innerText = minutes;
+  document.getElementById("second").innerText = seconds;
 }
 
-countdown();
-setInterval(countdown, 1000);
+// Update the countdown every second
+const countdownInterval = setInterval(updateCountdown, 1000);
